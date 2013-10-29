@@ -1,0 +1,118 @@
+{
+  "extends" : "thirdParty.api",
+  "abstract" : false,
+  "root" : "https://spring-bonfire-353.appspot.com/_ah/api",
+  "name" : "geeselistapi",
+  "version" : "v1",
+  "defaultVersion" : false,
+  "adapter" : {
+    "bns" : "https://spring-bonfire-353.appspot.com/_ah/spi",
+    "deadline" : 10.0,
+    "type" : "lily"
+  },
+  "auth" : {
+    "allowCookieAuth" : false
+  },
+  "frontendLimits" : {
+    "unregisteredUserQps" : -1,
+    "unregisteredQps" : -1,
+    "unregisteredDaily" : -1,
+    "rules" : [ ]
+  },
+  "cacheControl" : {
+    "type" : "no-cache",
+    "maxAge" : 0
+  },
+  "methods" : {
+    "geeselistapi.customer.list" : {
+      "path" : "customer",
+      "httpMethod" : "GET",
+      "authLevel" : "NONE",
+      "scopes" : [ "user.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "1085680595177.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.farmerboysen.api.Cutomer.getCustomers",
+      "request" : {
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    }
+  },
+  "descriptor" : {
+    "schemas" : {
+      "Customer" : {
+        "id" : "Customer",
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "$ref" : "Key"
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "address" : {
+            "type" : "string"
+          },
+          "zip" : {
+            "type" : "string"
+          },
+          "phone" : {
+            "type" : "string"
+          },
+          "notice" : {
+            "type" : "string"
+          }
+        }
+      },
+      "Key" : {
+        "id" : "Key",
+        "type" : "object",
+        "properties" : {
+          "kind" : {
+            "type" : "string"
+          },
+          "appId" : {
+            "type" : "string"
+          },
+          "id" : {
+            "type" : "string",
+            "format" : "int64"
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "parent" : {
+            "$ref" : "Key"
+          },
+          "complete" : {
+            "type" : "boolean"
+          },
+          "namespace" : {
+            "type" : "string"
+          }
+        }
+      },
+      "CustomerCollection" : {
+        "id" : "CustomerCollection",
+        "type" : "object",
+        "properties" : {
+          "items" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "Customer"
+            }
+          }
+        }
+      }
+    },
+    "methods" : {
+      "com.farmerboysen.api.Cutomer.getCustomers" : {
+        "response" : {
+          "$ref" : "CustomerCollection"
+        }
+      }
+    }
+  }
+}
