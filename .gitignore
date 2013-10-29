@@ -4,3 +4,5 @@
 *.jar
 *.war
 *.ear
+/war/WEB-INF/classes
+/src/com/farmerboysen/filter/resources/access.secret
